@@ -15,3 +15,11 @@ testData = [5 2;3 1;-4 -3];
 testData2 = [ones(testNum,1), testData];
 B = glmfit(trainData, [group ones(size(group))],'binomial', 'link', 'logit')
 p = 1.0 ./ (1 + exp(- testData2 * B))
+
+%Naive Bayes
+trainData = [0 1; -1 0; 2 2; 3 3; -2 -1;-4.5 -4; 2 -1; -1 -3];
+group = [1 1 -1 -1 1 1 -1 -1]';
+model = fitcnb(trainData, group)
+testData = [5 2;3 1;-4 -3];
+predict(model, testData)
+
